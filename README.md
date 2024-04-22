@@ -1,1 +1,1 @@
-The focus of this project it to build a Tic Tae game that runs in the browser, while using as little global scope as possible. To do so, Factory Functions and the Module pattern will be used to organize and structure the code.
+The focus of this project is to build a Tic Tae game that runs in the browser, while using as little global scope as possible. To do so, Factory Functions and the Module pattern will be used to organize and structure the code.
