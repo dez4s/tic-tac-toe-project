@@ -16,19 +16,19 @@ function gameBoard() {
     const getBoard = () => board;
 
     const boardStates = {
-        diagWinCheckRightToLeft() {
+        getRightToLeftDiagonal() {
             return board.reduce((accumulator, currentRow, index) => {
                 accumulator.push(currentRow[(columns - 1) - index]);
                 return accumulator;
                 }, []);
         },
-        diagWinCheckLeftToRight() {
+        getLeftToRightDiagonal() {
             return board.reduce((accumulator, currentRow, index) => {
                 accumulator.push(currentRow[index]);
                 return accumulator;
             }, []);
         },
-        verticalWinCheck() {
+        getFlippedBoard() { // for vertical win checking
             let verticalBoard = [];
             for (let i = 0; i < columns; i++) {
                 verticalBoard[i] = []; 
@@ -40,7 +40,7 @@ function gameBoard() {
             }
             return verticalBoard;   
         }
-    };
+    }; 
 
     const printBoard = () => console.log(board.map(row => row.map(elem => elem.getValue())));
 
@@ -176,12 +176,13 @@ function gameController(playerOneName = 'P1', playerTwoName = 'P2') {
         }
 
         for (let i = 0; i < currentBoard[0].length; i++) { // using currentBoard[0].length to get the columns number, because the columns will become rows and if columns number will be bigger the loop increases the number of iterations
-            if (runWinCondition(boardStates.verticalWinCheck()[i])) return runWinCondition(boardStates.verticalWinCheck()[i]);
-         }
+            if (runWinCondition(boardStates.getFlippedBoard()[i])) return runWinCondition(boardStates.getFlippedBoard()[i]);
+         } // check vertical win conditions
 
-        if (runWinCondition(boardStates.diagWinCheckLeftToRight())) return runWinCondition(boardStates.diagWinCheckLeftToRight());
+        // check diagonal win conditions
+        if (runWinCondition(boardStates.getLeftToRightDiagonal())) return runWinCondition(boardStates.getLeftToRightDiagonal()); 
 
-        if (runWinCondition(boardStates.diagWinCheckRightToLeft())) return runWinCondition(boardStates.diagWinCheckRightToLeft());
+        if (runWinCondition(boardStates.getRightToLeftDiagonal())) return runWinCondition(boardStates.getRightToLeftDiagonal());
 
         return false;
     };
@@ -200,6 +201,8 @@ function gameController(playerOneName = 'P1', playerTwoName = 'P2') {
     return { setPlayerName, playRound, getActivePlayer, getBoard: board.getBoard, restartGame };
 } 
 
+
+
 // UI Version
 // const screenController = (() => {
 //     const game = gameController();
@@ -208,7 +211,7 @@ function gameController(playerOneName = 'P1', playerTwoName = 'P2') {
 //     game.playRound(1, 1);
 // })();
 
-
+////////////////////////////////////////////////////
 // Console version
 const game = gameController();
 
@@ -227,6 +230,14 @@ const game = gameController();
 // game.playRound(0, 1);
 // game.playRound(2, 2);
 // game.playRound(1, 0);
+
+//diagonal win check
+game.playRound(2, 1);
+game.playRound(0, 0);
+game.playRound(2, 0);
+game.playRound(1, 1);
+game.playRound(0, 2);
+game.playRound(2, 2);
 
 //vertical win check
 // game.playRound(0, 0);
@@ -253,17 +264,17 @@ const game = gameController();
 // game.playRound(2, 0);
 
 // Game tie test suite
-game.playRound(0, 2);
-game.playRound(1, 2);
-game.playRound(0, 1);
-game.playRound(1, 1);
-game.playRound(2, 0);
-game.playRound(0, 0);
-game.playRound(2, 2);
-game.playRound(2, 1);
-game.playRound(1, 0);
+// game.playRound(0, 2);
+// game.playRound(1, 2);
+// game.playRound(0, 1);
+// game.playRound(1, 1);
+// game.playRound(2, 0);
+// game.playRound(0, 0);
+// game.playRound(2, 2);
+// game.playRound(2, 1);
+// game.playRound(1, 0);
 
-
+//////////////////////////////////////////////
 // algorithms used for checking win conditions
 //
 // const board = [
