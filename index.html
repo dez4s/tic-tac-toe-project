@@ -8,6 +8,52 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Tic Tac Toe</h1>
+        <nav>
+            <h2>Enter your names</h2>
+            <form class="name-select-form">
+                <label for="p1name"></label>
+                <input type="text" name="p1name">
+                <span>VS</span>
+                <label for="p2name"></label>
+                <input type="text" name="p2name">
+                <button type="button" class="btn start-btn">START!</button>
+            </form>
+        </nav>
+    </header>
+    <main>
+        <h3 class="game-text"></h3>
+        <div class="turn-container">
+            <div class="p1-data-container">
+                <p class="player-turn p1turn"></p>
+                <p class="player-score p1score"></p>
+            </div>
+            <p>VS</p>
+            <div class="p2-data-container">
+                <p class="player-turn p2turn"></p>
+                <p class="player-score p2score"></p>
+            </div>
+        </div>
+        <div class="board">
+        </div>
+        <dialog class="modal">
+            <form action="" method="dialog">
+                <label for="">Are you sure?</label>
+                <button class="btn quit-btn">Yes</button>
+                <button class="btn">No</button>
+            </form>
+        </dialog>
+        <button class="btn reset-btn">Reset Board</button>
+        <button class="btn open-modal">Quit Game</button>
+    </main>
+    <footer>
+        <p>Copyright ©</p>
+        <span id="currentYear">2024</span>
+        <p>Gabriel Panaitescu</p>
+        <a href="https://github.com/dez4s?tab=overview&amp;from=2024-03-01&amp;to=2024-03-18">
+          <img src="./images/github-logo/github-mark/github-mark.svg" alt="" class="icon">
+        </a>
+    </footer>
 </body>
 </html>
