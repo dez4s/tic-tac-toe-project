@@ -239,8 +239,8 @@ const gameScreenController = (() => {
     const gameText = main.querySelector('h3.game-text')
     const p1turn = main.querySelector('p.p1turn');
     const p2turn = main.querySelector('p.p2turn');
-    const p1score = main.querySelector('p.p1score');
-    const p2score = main.querySelector('p.p2score');
+    const p1score = main.querySelector('.p1score');
+    const p2score = main.querySelector('.p2score');
 
     const displayPlayersNames = () => { 
         p1turn.textContent = game.getPlayerData(0, 'name');
@@ -261,10 +261,10 @@ const gameScreenController = (() => {
         gameText.textContent = gameState.text;
         resetBtn.textContent = 'Reset board'; // default text content will change when a round ends (game has a winner or ended i a tie); this will reset back to default
         
-        if (activePlayer.name === game.getPlayerData(0, 'name')) {
+        if (activePlayer.token === game.getPlayerData(0, 'token')) {
             p2turn.classList.remove('active-player-text');
             p1turn.classList.add('active-player-text');
-        } else if (activePlayer.name === game.getPlayerData(1, 'name')) {
+        } else if (activePlayer.token === game.getPlayerData(1, 'token')) {
             p1turn.classList.remove('active-player-text');
             p2turn.classList.add('active-player-text');
         }
